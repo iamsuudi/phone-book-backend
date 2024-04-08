@@ -7,16 +7,20 @@ const logger = require('./utils/logger');
 let persons = require('./persons');
 const generateId = require('./generateId');
 
+morgan.token('newContact', (req, res) => {
+    return JSON.stringify(req.body)
+})
+
 app.use(cors());
 app.use(express.json());
-app.use(morgan("tiny"));
+// app.use();
 
 app.get('/', (req, res) => {
     // logger.info(req.headers);person.id
     res.json(persons);
 });
 
-app.post('/', (req, res) => {
+app.post('/', morgan(":method :url :status :response-time ms :newContact"), (req, res) => {
     // logger.info({id: generateId(), ...req.body}, ' is added');
     persons.push({id: generateId(), ...req.body});
     res.json({id: generateId(), ...req.body});
