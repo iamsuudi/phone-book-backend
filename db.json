@@ -1,24 +1,69 @@
 {
-    "persons":[
-      { 
-        "name": "Arto Hellas", 
-        "number": "040-123456",
-        "id": 1
-      },
-      { 
-        "name": "Ada Lovelace", 
-        "number": "39-44-5323523",
-        "id": 2
-      },
-      { 
-        "name": "Dan Abramov", 
-        "number": "12-43-234345",
-        "id": 3
-      },
-      { 
-        "name": "Mary Poppendieck", 
-        "number": "39-23-6423122",
-        "id": 4
-      }
-    ]
-  }
+  "persons": [
+    {
+      "name": "Abdulfetah Suudi",
+      "number": "251-991-75-2985",
+      "id": "30df"
+    },
+    {
+      "id": "6b33",
+      "name": "Abubeker Mohammed",
+      "number": "251-966-63-8020"
+    },
+    {
+      "id": "2f79",
+      "name": "Abdulfetah Jemal",
+      "number": "251-961-21-9838"
+    },
+    {
+      "id": "1dce",
+      "name": "Amintu Omer",
+      "number": "251-928-61-4589"
+    },
+    {
+      "id": "29d9",
+      "name": "Jiyea",
+      "number": "251-964-61-7980"
+    },
+    {
+      "id": "b951",
+      "name": "Abdisa Kelil",
+      "number": "251-915-13-8706"
+    },
+    {
+      "id": "8a36",
+      "name": "Adil Yusuf",
+      "number": "251-965-29-1475"
+    },
+    {
+      "id": "5f5b",
+      "name": "Adnan Tahir",
+      "number": "251-968-14-4761"
+    },
+    {
+      "id": "80c8",
+      "name": "Ahmed Mohammed-Sani",
+      "number": "251-942-99-1391"
+    },
+    {
+      "id": "e53a",
+      "name": "Arfean Eliyas",
+      "number": "251-927-80-1942"
+    },
+    {
+      "id": "fa72",
+      "name": "Arif Kedir",
+      "number": "251-963-91-9135"
+    },
+    {
+      "id": "ad3d",
+      "name": "Hamza Mustefa",
+      "number": "251-968-74-0036"
+    },
+    {
+      "id": "21f3",
+      "name": "Hassen Guled",
+      "number": "251-972-23-1596"
+    }
+  ]
+}
