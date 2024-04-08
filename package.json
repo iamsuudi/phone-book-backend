@@ -7,6 +7,8 @@
     "start": "node .",
     "dev": "nodemon .",
     "json-server": "json-server -p3001 --watch db.json",
+    "build:ui": "rm -rf dist && cd ../phone-book && npm run build && cp -r dist ../phone-book-backend",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
