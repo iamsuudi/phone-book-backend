@@ -1,4 +1,4 @@
-const persons = [
+let persons = [
     { id: 1, name: "Kimberlee Turlington", number: "039 298-72-30" },
     { id: 2, name: "Miguel Eveland", number: "032-2659094" },
     { id: 3, name: "Audrie Smid", number: "03758295-10 32" },

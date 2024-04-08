@@ -1,7 +1,7 @@
 const persons = require('./persons');
 
 const generateId = () => {
-    const maxId = Math.max([...persons.map(person => person.id), 0]);
+    const maxId = Math.max(...persons.map(person => Number(person.id)), 0);
     return maxId + 1;
 }
 

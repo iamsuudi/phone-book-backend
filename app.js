@@ -3,27 +3,26 @@ const app = express.Router();
 const cors = require('cors');
 
 const logger = require('./utils/logger');
-const persons = require('./persons');
+let persons = require('./persons');
 const generateId = require('./generateId');
 
 app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    // logger.info(req.headers);
+    // logger.info(req.headers);person.id
     res.json(persons);
 });
 
 app.post('/', (req, res) => {
-    logger.info(req.body);
+    logger.info({id: generateId(), ...req.body}, ' is added');
     persons.push({id: generateId(), ...req.body});
-    res.json(req.body);
+    res.json({id: generateId(), ...req.body});
 });
 
 app.delete('/:id', (req, res) => {
     logger.info(`Delete id: ${req.params.id}`);
-    const index = persons.find(person => person.id === req.params.id);
-    persons.splice(index, 1);
+    persons = persons.filter((person) => Number(person.id) !== Number(req.params.id));
     res.json(req.body);
 });
 
