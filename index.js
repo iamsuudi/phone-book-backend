@@ -5,6 +5,7 @@ const config = require('./utils/config');
 
 const app = express();
 
+app.use(express.static('dist'));
 app.use('/persons', appRoute);
 
 app.listen(config.port, () => {

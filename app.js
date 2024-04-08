@@ -13,7 +13,6 @@ morgan.token('newContact', (req, res) => {
 
 app.use(cors());
 app.use(express.json());
-// app.use();
 
 app.get('/', (req, res) => {
     // logger.info(req.headers);person.id
