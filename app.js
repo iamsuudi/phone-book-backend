@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express.Router();
 const cors = require('cors');
+const morgan = require('morgan');
 
 const logger = require('./utils/logger');
 let persons = require('./persons');
@@ -8,6 +9,7 @@ const generateId = require('./generateId');
 
 app.use(cors());
 app.use(express.json());
+app.use(morgan("tiny"));
 
 app.get('/', (req, res) => {
     // logger.info(req.headers);person.id
@@ -15,13 +17,13 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    logger.info({id: generateId(), ...req.body}, ' is added');
+    // logger.info({id: generateId(), ...req.body}, ' is added');
     persons.push({id: generateId(), ...req.body});
     res.json({id: generateId(), ...req.body});
 });
 
 app.delete('/:id', (req, res) => {
-    logger.info(`Delete id: ${req.params.id}`);
+    // logger.info(`Delete id: ${req.params.id}`);
     persons = persons.filter((person) => Number(person.id) !== Number(req.params.id));
     res.json(req.body);
 });
