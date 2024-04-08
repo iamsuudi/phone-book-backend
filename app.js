@@ -26,4 +26,9 @@ app.delete('/:id', (req, res) => {
     res.json(req.body);
 });
 
+app.get('/:id', (req, res) => {
+    // find a specific contact
+    res.json(persons.find(person => Number(person.id) === Number(req.params.id)));
+});
+
 module.exports = app;
