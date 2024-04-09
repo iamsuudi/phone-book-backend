@@ -6,11 +6,6 @@ const config = require("./utils/config");
 
 const app = express();
 
-if (process.argv.length < 3) {
-    logger.info("give password as argument");
-    process.exit(1);
-}
-
 logger.info("connecting to mongodb");
 
 mongoose
