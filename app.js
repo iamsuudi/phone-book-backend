@@ -17,7 +17,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
     // logger.info(req.headers);person.id
     Person.find({}).then(response => {
-        logger.info(response.length);
+        logger.info('Total documents: ', response.length);
         res.json(response);
     })
 });
@@ -35,13 +35,15 @@ app.post('/', morgan(":method :url :status :response-time ms :newContact"), (req
     })
 });
 
-/* app.delete('/:id', (req, res) => {
-    // logger.info(`Delete id: ${req.params.id}`);
-    persons = persons.filter((person) => Number(person.id) !== Number(req.params.id));
-    res.json(req.body);
+app.delete('/:id', (req, res) => {
+    
+    Person.findOneAndDelete(req.params.id).then(response => {
+        logger.info('id: ', req.params.id);
+        res.json(response);
+    });
 });
 
-app.get('/:id', (req, res) => {
+/* app.get('/:id', (req, res) => {
     // find a specific contact
     res.json(persons.find(person => Number(person.id) === Number(req.params.id)));
 }); */
