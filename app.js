@@ -17,17 +17,25 @@ app.use(express.json());
 app.get('/', (req, res) => {
     // logger.info(req.headers);person.id
     Person.find({}).then(response => {
+        logger.info(response.length);
         res.json(response);
     })
 });
 
-/* app.post('/', morgan(":method :url :status :response-time ms :newContact"), (req, res) => {
-    // logger.info({id: generateId(), ...req.body}, ' is added');
-    persons.push({id: generateId(), ...req.body});
-    res.json({id: generateId(), ...req.body});
+app.post('/', morgan(":method :url :status :response-time ms :newContact"), (req, res) => {
+    
+    if (!req.body) {
+        return res.send(400).json({error: 'Empty content'})
+    }
+
+    const newPerson = new Person({...req.body});
+    newPerson.save().then(response => {
+        // persons.push({id: generateId(), ...req.body});
+        res.json(response);
+    })
 });
 
-app.delete('/:id', (req, res) => {
+/* app.delete('/:id', (req, res) => {
     // logger.info(`Delete id: ${req.params.id}`);
     persons = persons.filter((person) => Number(person.id) !== Number(req.params.id));
     res.json(req.body);
