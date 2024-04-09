@@ -43,9 +43,12 @@ app.delete('/:id', (req, res) => {
     });
 });
 
-/* app.get('/:id', (req, res) => {
+app.put('/:id', (req, res) => {
     // find a specific contact
-    res.json(persons.find(person => Number(person.id) === Number(req.params.id)));
-}); */
+    const UpdatedPerson = {...req.body};
+    Person.findByIdAndUpdate(req.params.id, UpdatedPerson, {new: true}).then(updatedData => {
+        res.json(updatedData);
+    })
+});
 
 module.exports = app;
