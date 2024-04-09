@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.post('/', morgan(":method :url :status :response-time ms :newContact"), (req, res) => {
     
     if (!req.body) {
-        return res.send(400).json({error: 'Empty content'})
+        return res.status(400).send({error: 'Empty content'})
     }
 
     const newPerson = new Person({...req.body});

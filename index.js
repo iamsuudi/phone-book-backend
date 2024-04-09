@@ -24,6 +24,16 @@ mongoose
 
 app.use(express.static('dist'));
 app.use('/persons', appRoute);
+app.use((error, req, res, next) => {
+
+    logger.error(error);
+
+    if (error.name === 'CastError') {
+        return res.status(400).send({ error: 'malformatted id' })
+      } 
+    
+      next(error);
+})
 
 app.listen(config.port, () => {
     logger.info(`app server is listening on port ${config.port}`);
