@@ -52,14 +52,16 @@ app.put("/:id", (req, res, next) => {
     Person.findByIdAndUpdate(req.params.id, UpdatedPerson, {
         new: true,
         runValidators: true,
-        context: "query",
     }).then((updatedData) => {
         res.json(updatedData);
+    }).catch((error) => {
+        next(error);
     });
 });
 
 app.use((error, req, res, next) => {
-    logger.error(error);
+    // logger.info(error);
+    logger.info(error.message);
 
     if (error.name === "CastError") {
         return res.status(400).send({ error: "malformatted id" });
