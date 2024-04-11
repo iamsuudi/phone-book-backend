@@ -1,75 +1,75 @@
-const express = require("express");
-const app = express.Router();
-const cors = require("cors");
-const morgan = require("morgan");
+const express = require('express')
+const cors = require('cors')
+const morgan = require('morgan')
 
-const logger = require("./utils/logger");
-const config = require("./utils/config");
-const Person = require("./models/Person");
+const logger = require('./utils/logger')
+const Person = require('./models/Person')
 
-morgan.token("newContact", (req, res) => {
-    return JSON.stringify(req.body);
-});
+const app = express.Router()
 
-app.use(cors());
-app.use(express.json());
+morgan.token('newContact', (req) => JSON.stringify(req.body))
 
-app.get("/", (req, res) => {
+app.use(cors())
+app.use(express.json())
+
+app.get('/', (req, res) => {
     // logger.info(req.headers);person.id
     Person.find({}).then((response) => {
-        logger.info("Total documents: ", response.length);
-        res.json(response);
-    });
-});
+        logger.info('Total documents: ', response.length)
+        res.json(response)
+    })
+})
 
 app.post(
-    "/",
-    morgan(":method :url :status :response-time ms :newContact"),
+    '/',
+    morgan(':method :url :status :response-time ms :newContact'),
     (req, res, next) => {
-        const newPerson = new Person({ ...req.body });
+        const newPerson = new Person({ ...req.body })
         newPerson
             .save()
             .then((response) => {
                 // persons.push({id: generateId(), ...req.body});
-                res.json(response);
+                res.json(response)
             })
             .catch((error) => {
-                next(error);
-            });
-    }
-);
+                next(error)
+            })
+    },
+)
 
-app.delete("/:id", (req, res) => {
+app.delete('/:id', (req, res) => {
     Person.findOneAndDelete(req.params.id).then((response) => {
-        logger.info("id: ", req.params.id);
-        res.json(response);
-    });
-});
+        logger.info('id: ', req.params.id)
+        res.json(response)
+    })
+})
 
-app.put("/:id", (req, res, next) => {
+app.put('/:id', (req, res, next) => {
     // find a specific contact
-    const UpdatedPerson = { ...req.body };
+    const UpdatedPerson = { ...req.body }
     Person.findByIdAndUpdate(req.params.id, UpdatedPerson, {
         new: true,
         runValidators: true,
-    }).then((updatedData) => {
-        res.json(updatedData);
-    }).catch((error) => {
-        next(error);
-    });
-});
+    })
+        .then((updatedData) => {
+            res.json(updatedData)
+        })
+        .catch((error) => {
+            next(error)
+        })
+})
 
+/* eslint consistent-return: 0, no-else-return: 0 */
 app.use((error, req, res, next) => {
     // logger.info(error);
-    logger.info(error.message);
+    logger.info(error.message)
 
-    if (error.name === "CastError") {
-        return res.status(400).send({ error: "malformatted id" });
-    } else if (error.name === "ValidationError") {
-        return res.status(400).json({ error: error.message });
+    if (error.name === 'CastError') {
+        return res.status(400).send({ error: 'malformatted id' })
+    } else if (error.name === 'ValidationError') {
+        return res.status(400).json({ error: error.message })
     }
+    next(error)
+})
 
-    next(error);
-});
-
-module.exports = app;
+module.exports = app

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
+    "lint": "eslint .",
     "json-server": "json-server -p3001 --watch db.json",
     "build:ui": "rm -rf dist && cd ../phone-book && npm run build && cp -r dist ../phone-book-backend",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
@@ -21,5 +22,16 @@
     "express": "^4.19.2",
     "mongoose": "^8.3.1",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.0.0",
+    "@stylistic/eslint-plugin-js": "^1.7.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "globals": "^15.0.0",
+    "prettier": "^3.2.5"
   }
 }
