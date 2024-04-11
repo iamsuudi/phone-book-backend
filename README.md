@@ -24,7 +24,15 @@ Users should be able to:
 
 ### Screenshot
 
+<<<<<<< HEAD
 <img src="./screenshots/desktop.png">
+=======
+<<<<<<< HEAD
+<img src="./screenshots/desktop.png">
+=======
+<img src="./screenshots/desktop.png" width="900px">
+>>>>>>> ae155b70b55e6a5de9b423218de4f5290396608e
+>>>>>>> 7348626860f61c1fd7822ca539ffe3f28184c04e
 
 ### Links
 
